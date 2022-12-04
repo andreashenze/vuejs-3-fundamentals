@@ -29,7 +29,10 @@
         Save Item
       </button>
     </div>
-    <p v-if="items.length === 0">Nice job! You've bought all your items!</p>
+
+    <!-- <p v-if="items.length === 0">Nice job! You've bought all your items!</p> -->
+    <p v-if="allItemsBought() === true">Nice job! You've bought all your items!</p>
+
     <ul>
       <li 
         v-for="item in reversedItems" 
@@ -80,9 +83,13 @@
         },
         togglePurchased(item){
           item.purchased = !item.purchased
+        },
+        allItemsBought(){
+          return this.items.every( item  => item.purchased === true)
         }
+    }
       }
-    }).mount('#shopping-list')
+    ).mount('#shopping-list')
   </script>
 </body>
 
